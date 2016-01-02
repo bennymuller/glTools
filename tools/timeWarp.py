@@ -1,24 +1,25 @@
-import maya.cmds as mc
+import maya.cmds as cmds
 
-def timeWarp(animCurves,prefix):
-	'''
-	'''
-	# Check anim curves
-	if not animCurves: return
-	
-	# Get anim playback start and end
-	st = mc.playbackOptions(q=True,min=True)
-	en = mc.playbackOptions(q=True,max=True)
-	
-	# Create time warp curve
-	timeWarpCrv = mc.createNode('animCurveTT',n=prefix+'_timeWarp')
-	mc.setKeyframe(timeWarpCrv,t=st,v=st)
-	mc.setKeyframe(timeWarpCrv,t=en,v=en)
-	
-	# Attach timeWarp
-	for animCurve in animCurves:
-	
-		# Check curve type
-		crvType = mc.objectType(animCurve)
-		if crvType == 'animCurveTL' or crvType == 'animCurveTA' or crvType == 'animCurveTU':
-			mc.connectAttr(timeWarpCrv+'.output',animCurve+'.input',f=True)
+
+def timeWarp(anicmdsurves, prefix):
+    """
+    """
+    # Check anim curves
+    if not anicmdsurves: return
+
+    # Get anim playback start and end
+    st = cmds.playbackOptions(q=True, min=True)
+    en = cmds.playbackOptions(q=True, max=True)
+
+    # Create time warp curve
+    timeWarpCrv = cmds.createNode('anicmdsurveTT', n=prefix + '_timeWarp')
+    cmds.setKeyframe(timeWarpCrv, t=st, v=st)
+    cmds.setKeyframe(timeWarpCrv, t=en, v=en)
+
+    # Attach timeWarp
+    for anicmdsurve in anicmdsurves:
+
+        # Check curve type
+        crvType = cmds.objectType(anicmdsurve)
+        if crvType == 'anicmdsurveTL' or crvType == 'anicmdsurveTA' or crvType == 'anicmdsurveTU':
+            cmds.connectAttr(timeWarpCrv + '.output', anicmdsurve + '.input', f=True)

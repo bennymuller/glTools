@@ -1,51 +1,55 @@
-import maya.mel as mm
-import maya.cmds as mc
+import maya.mel as mel
+import maya.cmds as cmds
 import maya.OpenMaya as OpenMaya
+
 
 class UserInterupted(Exception): pass
 
-def init(status,maxValue):
-	'''
-	Initialize Progress Bar
-	'''
-	# Check Interactive Session
-	if OpenMaya.MGlobal.mayaState(): return
 
-	# Initialize Progress Bar
-	gMainProgressBar = mm.eval('$tmp = $gMainProgressBar')
-	mc.progressBar( gMainProgressBar,e=True,bp=True,ii=True,status=status,maxValue=maxValue )
+def init(status, maxValue):
+    """
+    Initialize Progress Bar
+    """
+    # Check Interactive Session
+    if OpenMaya.MGlobal.mayaState(): return
 
-def update(step=0,status='',enableUserInterupt=False):
-	'''
-	Update Progress
-	'''
-	# Check Interactive Session
-	if OpenMaya.MGlobal.mayaState(): return
+    # Initialize Progress Bar
+    gMainProgressBar = mel.eval('$tmp = $gMainProgressBar')
+    cmds.progressBar(gMainProgressBar, e=True, bp=True, ii=True, status=status, maxValue=maxValue)
 
-	# Update Progress Bar
-	gMainProgressBar = mm.eval('$tmp = $gMainProgressBar')
 
-	# Check User Interuption
-	if enableUserInterupt:
-		if mc.progressBar(gMainProgressBar,q=True,isCancelled=True):
-			mc.progressBar(gMainProgressBar,e=True,endProgress=True)
-			raise UserInterupted('Operation cancelled by user!')
+def update(step=0, status='', enableUserInterupt=False):
+    """
+    Update Progress
+    """
+    # Check Interactive Session
+    if OpenMaya.MGlobal.mayaState(): return
 
-	# Update Status
-	if status: mc.progressBar( gMainProgressBar,e=True,status=status)
+    # Update Progress Bar
+    gMainProgressBar = mel.eval('$tmp = $gMainProgressBar')
 
-	# Step Progress
-	if step: mc.progressBar(gMainProgressBar,e=True,step=step)
+    # Check User Interuption
+    if enableUserInterupt:
+        if cmds.progressBar(gMainProgressBar, q=True, isCancelled=True):
+            cmds.progressBar(gMainProgressBar, e=True, endProgress=True)
+            raise UserInterupted('Operation cancelled by user!')
+
+    # Update Status
+    if status: cmds.progressBar(gMainProgressBar, e=True, status=status)
+
+    # Step Progress
+    if step: cmds.progressBar(gMainProgressBar, e=True, step=step)
+
 
 def end():
-	'''
-	End Progress
-	'''
-	# Check Interactive Session
-	if OpenMaya.MGlobal.mayaState(): return
+    """
+    End Progress
+    """
+    # Check Interactive Session
+    if OpenMaya.MGlobal.mayaState(): return
 
-	# Update Progress Bar
-	gMainProgressBar = mm.eval('$tmp = $gMainProgressBar')
+    # Update Progress Bar
+    gMainProgressBar = mel.eval('$tmp = $gMainProgressBar')
 
-	# End Progress
-	mc.progressBar(gMainProgressBar,e=True,endProgress=True)
+    # End Progress
+    cmds.progressBar(gMainProgressBar, e=True, endProgress=True)

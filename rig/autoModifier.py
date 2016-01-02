@@ -1,16 +1,19 @@
-import maya.cmds as mc
+import maya.cmds as cmds
+
 
 def autoModifierAttribute():
-	'''
-	'''
-	pass
+    """
+    """
+    pass
+
 
 def buildModifiers(moduleTemplateGrp):
-	'''
-	'''
-	pass
+    """
+    """
+    pass
+
 
 def buildAllModifiers():
-	'''
-	'''
-	pass
+    """
+    """
+    pass
