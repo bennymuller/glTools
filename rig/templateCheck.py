@@ -19,6 +19,7 @@ def checkTemplateElements(template):
 
         # Get template component list
         templateList = template[key]
+
         for item in templateList:
 
             # Check template item exists
