@@ -10,10 +10,12 @@ import glTools.utils.mesh
 
 def reconstructMesh(mesh, replace=False):
     """
-	Reconstruct mesh using meshData data class.
-	@param mesh: The mesh object to reconstruct.
-	@type mesh: str
-	"""
+    Reconstruct mesh using meshData data class.
+    @param mesh: The mesh object to reconstruct.
+    @type mesh: str
+    @param replace: whether to replce or not
+    @type replace: bool
+    """
     # Check Mesh
     if not glTools.utils.mesh.isMesh(mesh):
         raise Exception('Object "' + mesh + '" is not a valid mesh!')
@@ -30,7 +32,8 @@ def reconstructMesh(mesh, replace=False):
     # Reassign Shader
     meshShape = cmds.ls(cmds.listRelatives(mesh, s=True, ni=True), type='mesh')[0]
     sg = cmds.ls(cmds.listConnections(meshShape, s=True, d=True, sh=True) or [], type='shadingEngine')
-    if sg: cmds.sets(newMesh, fe=sg[0])
+    if sg:
+        cmds.sets(newMesh, fe=sg[0])
 
     # Replace
     if replace:
@@ -43,7 +46,8 @@ def reconstructMesh(mesh, replace=False):
         newMesh = cmds.rename(newMesh, mesh)
 
         # Reparent Mesh
-        if meshParent: cmds.parent(newMesh, meshParent[0])
+        if meshParent:
+            cmds.parent(newMesh, meshParent[0])
 
         # Delete Old Mesh
         cmds.delete(delMesh)
@@ -54,14 +58,14 @@ def reconstructMesh(mesh, replace=False):
 
 def edgeLoopsToCurve(edgeList, form=2, degree=1):
     """
-	Generate edge loop curves from the specified list of edges.
-	@param edgeList: The list of mesh edges to generate edge loop curves from.
-	@type edgeList: list
-	@param form: NURBS curve form. 0 = Periodic, 1 = Open, 2 = Best Guess.
-	@type form: str
-	@param degree: NURBS curve degree.
-	@type degree: str
-	"""
+    Generate edge loop curves from the specified list of edges.
+    @param edgeList: The list of mesh edges to generate edge loop curves from.
+    @type edgeList: list
+    @param form: NURBS curve form. 0 = Periodic, 1 = Open, 2 = Best Guess.
+    @type form: str
+    @param degree: NURBS curve degree.
+    @type degree: str
+    """
     # Filter/Check Edge List
     edgeList = cmds.filterExpand(edgeList, ex=True, sm=32)
     if not edgeList: raise Exception('Invalid edge list!')

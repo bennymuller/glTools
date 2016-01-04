@@ -10,8 +10,10 @@ def isHub(hub):
     @param hub: Hub node to query.
     @type hub: str
     """
-    if not cmds.objExists(hub): return False
-    if not cmds.objExists(hub + '.connectionHub'): return False
+    if not cmds.objExists(hub):
+        return False
+    if not cmds.objExists(hub + '.connectionHub'):
+        return False
     return True
 
 
@@ -96,6 +98,8 @@ def addConnection(hub, attr, output=True, connect=True):
 
 def connect(hub):
     """
+    @param hub: First hub in connection pair.
+    @type hub: str
     """
     # Get Hub Attributes
     for hubAttr in pm.PyNode(hub).listAttr(ud=True):
@@ -183,6 +187,8 @@ def connectToHub(hub1, hub2):
 
 def connectCopy(hub):
     """
+    @param hub: First hub
+    @type hub: str
     """
     # ==========
     # - Checks -

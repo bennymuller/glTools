@@ -12,7 +12,8 @@ def isTangentBlend(tangentBlend):
     # Check blendShape exists
     if not cmds.objExists(tangentBlend): return False
     # Check object type
-    if cmds.objectType(tangentBlend) != 'tangentBlendDeformer': return False
+    if cmds.objectType(tangentBlend) != 'tangentBlendDeformer':
+        return False
     # Return result
     return True
 
@@ -20,13 +21,14 @@ def isTangentBlend(tangentBlend):
 def unlockTransform(node):
     """
     Unlock transform channels
-    @param node: Transform to ulock channels for
+    @param node: Transform to unlock channels for
     @type node: str
     """
     # Define attribute list
     attrList = ['tx', 'ty', 'tz', 't', 'rx', 'ry', 'rz', 'r', 'sx', 'sy', 'sz', 's']
     # Unlock attributes
-    for attr in attrList: cmds.setAttr(node + '.' + attr, l=False)
+    for attr in attrList:
+        cmds.setAttr(node + '.' + attr, l=False)
 
 
 def findTangentBlendDeformer(geo):
@@ -51,6 +53,7 @@ def findTangentBlendDeformer(geo):
 
 def findAffectedGeometry(tangentBlend):
     """
+    @param tangentBlend:
     """
     # Check deformer
     if not isTangentBlend(tangentBlend):
@@ -65,6 +68,7 @@ def findAffectedGeometry(tangentBlend):
 
 def geomAttrName(shapeNode):
     """
+    @param shapeNode:
     """
     # Get shape attribute based on geometry type
     attrType = cmds.nodeType(shapeNode, api=True)
@@ -75,6 +79,9 @@ def geomAttrName(shapeNode):
 
 def duplicateGeo(obj, name):
     """
+    @param obj:
+    @param name:
+    @return:
     """
     # Duplicate Geometry
     dup = cmds.duplicate(obj, name=name)[0]
@@ -94,12 +101,17 @@ def duplicateGeo(obj, name):
 
 def create(geo, name=''):
     """
+    @param geo:
+    @param name:
+    @return:
     """
     # Load Plugin
-    if not cmds.pluginInfo('tangentBlendDeformer', q=True, l=True): cmds.loadPlugin('tangentBlendDeformer')
+    if not cmds.pluginInfo('tangentBlendDeformer', q=True, l=True):
+        cmds.loadPlugin('tangentBlendDeformer')
 
     # Create Deformer
-    if not name: name = geo + '_tangentBlendDeformer'
+    if not name:
+        name = geo + '_tangentBlendDeformer'
     tangentBlend = cmds.deformer(geo, type='tangentBlendDeformer', n=name)[0]
 
     # Return Result
@@ -108,6 +120,10 @@ def create(geo, name=''):
 
 def connectPose(baseXForm, offsetXForm, deformer):
     """
+    @param baseXForm:
+    @param offsetXForm:
+    @param deformer:
+    @return:
     """
     # Get next available deformer index
     index = glTools.utils.attribute.nextAvailableMultiIndex(deformer + '.pose', useConnectedOnly=False)
@@ -129,6 +145,10 @@ def connectPose(baseXForm, offsetXForm, deformer):
 
 def addPose(tangentBlend, baseGeo='', offsetGeo='', poseName=''):
     """
+    @param tangentBlend:
+    @param baseGeo:
+    @param offsetGeo:
+    @param poseName:
     """
     # Define suffix tags
     tangentBlend_baseTag = '_poseBase'

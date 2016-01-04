@@ -12,8 +12,8 @@ class RecursiveBreak(Exception): pass
 def getGeoList(geoList=[]):
     """
     Return a list of geometry transform objects to be used for model checks
-    @param meshList: List of meshes to return as list. If empty, use all non intermediate meshes in the scene
-    @type meshList: list
+    @param geoList: List of meshes to return as list. If empty, use all non intermediate meshes in the scene
+    @type geoList: list
     """
     # Check Geo List
     if not geoList:
@@ -40,7 +40,8 @@ def getMeshList(meshList=[]):
         meshList = [cmds.listRelatives(i, p=True, pa=True)[0] for i in cmds.ls(type='mesh', ni=True) or []]
     else:
         meshList = [mesh for mesh in meshList if glTools.utils.mesh.isMesh(mesh)]
-    if not meshList: return []
+    if not meshList:
+        return []
 
     # Remove Duplicates
     meshList = list(set(meshList))

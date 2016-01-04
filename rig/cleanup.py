@@ -177,8 +177,7 @@ def cleanDeformers(eightThreshold=0.001, showProgress=False):
     deformerList = glTools.utils.deformer.getDeformerList(nodeType='weightGeometryFilter')
 
     if showProgress and interactive:
-        cmds.progressBar(gMainProgressBar, e=True, bp=True, ii=True, status=('Cleaning Deformers...'),
-                       maxValue=len(deformerList))
+        cmds.progressBar(gMainProgressBar, e=True, bp=True, ii=True, status=('Cleaning Deformers...'), maxValue=len(deformerList))
 
     # For Each Deformer
     for deformer in deformerList:

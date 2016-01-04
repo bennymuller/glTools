@@ -31,6 +31,8 @@ def checksum_mesh(mesh):
 
 def checksum_meshUV(mesh):
     """
+    @param mesh:Polygon mesh to return uv checksum for
+    @type mesh: str
     """
     # Check Mesh
     if not glTools.utils.mesh.isMesh(mesh):
@@ -50,7 +52,8 @@ def checksum_meshDict(meshList):
     checksum_dict = {}
 
     # Check Mesh List
-    if not meshList: return checksum_dict
+    if not meshList:
+        return checksum_dict
 
     # For Each Mesh
     for mesh in meshList:

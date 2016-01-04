@@ -74,32 +74,38 @@ def alignControlPoints(controlPointList, axis, localAxis=True):
     maxVal = -99999.9
     if axis == '+x':
         for i in range(len(ptList)):
-            if ptList[i][0] > maxVal: maxVal = ptList[i][0]
+            if ptList[i][0] > maxVal:
+                maxVal = ptList[i][0]
         ptList = [(maxVal, pt[1], pt[2]) for pt in ptList]
 
     elif axis == '-x':
         for i in range(len(ptList)):
-            if ptList[i][0] < minVal: minVal = ptList[i][0]
+            if ptList[i][0] < minVal:
+                minVal = ptList[i][0]
         ptList = [(minVal, pt[1], pt[2]) for pt in ptList]
 
     elif axis == '+y':
         for i in range(len(ptList)):
-            if ptList[i][1] > maxVal: maxVal = ptList[i][1]
+            if ptList[i][1] > maxVal:
+                maxVal = ptList[i][1]
         ptList = [(pt[0], maxVal, pt[2]) for pt in ptList]
 
     elif axis == '-y':
         for i in range(len(ptList)):
-            if ptList[i][1] < minVal: minVal = ptList[i][1]
+            if ptList[i][1] < minVal:
+                minVal = ptList[i][1]
         ptList = [(pt[0], minVal, pt[2]) for pt in ptList]
 
     elif axis == '+z':
         for i in range(len(ptList)):
-            if ptList[i][2] > maxVal: maxVal = ptList[i][2]
+            if ptList[i][2] > maxVal:
+                maxVal = ptList[i][2]
         ptList = [(pt[0], pt[1], maxVal) for pt in ptList]
 
     elif axis == '-z':
         for i in range(len(ptList)):
-            if ptList[i][2] < minVal: minVal = ptList[i][2]
+            if ptList[i][2] < minVal:
+                minVal = ptList[i][2]
         ptList = [(pt[0], pt[1], minVal) for pt in ptList]
 
     elif axis == 'bestFitPlane':
@@ -110,7 +116,7 @@ def alignControlPoints(controlPointList, axis, localAxis=True):
         print('Got best fit plane')
 
         for i in range(len(ptList)):
-            print(controlPointList[i])
+            print controlPointList[i]
 
             # Get Best Fit Plane Position
             pPt = glTools.utils.matrix.vectorMatrixMultiply(vector=ptList[i],

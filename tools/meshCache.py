@@ -151,7 +151,8 @@ def writeGeoCache(path, name, mesh, startFrame, endFrame, pad=4, uvSet='', world
             faceData = ' ' + str(len(vtxArray)) + ' <'
             for i in range(len(vtxArray)):
                 faceData += ' ' + str(vtxArray[i])
-                if uv: faceData += ' ( ' + str(uArray[i]) + ' ' + str(vArray[i]) + ' 0.0 )'
+                if uv:
+                    faceData += ' ( ' + str(uArray[i]) + ' ' + str(vArray[i]) + ' 0.0 )'
             faceData += '\n'
 
             # Write face data
@@ -203,8 +204,10 @@ def writeGeoCombineCache(path, name, meshList, startFrame, endFrame, pad=4, uvSe
     # Check mesh list
     fullMeshList = meshList
     for mesh in meshList:
-        if not cmds.objExists(mesh): raise Exception('Mesh "' + mesh + '" does not exist!')
-        if not glTools.utils.mesh.isMesh(mesh): raise Exception('Object "' + mesh + '" is not a valid mesh!')
+        if not cmds.objExists(mesh):
+            raise Exception('Mesh "' + mesh + '" does not exist!')
+        if not glTools.utils.mesh.isMesh(mesh):
+            raise Exception('Object "' + mesh + '" is not a valid mesh!')
 
     # Check UVs
     uv = False
@@ -229,7 +232,8 @@ def writeGeoCombineCache(path, name, meshList, startFrame, endFrame, pad=4, uvSe
 
         # Check mesh visibility
         meshList = [mesh for mesh in fullMeshList if cmds.getAttr(mesh + '.v')]
-        if not meshList: continue
+        if not meshList:
+            continue
 
         # -------------------------
         # - Open file for writing -
@@ -347,7 +351,8 @@ def writeGeoCombineCache(path, name, meshList, startFrame, endFrame, pad=4, uvSe
                 faceData = ' ' + str(len(vtxArray)) + ' <'
                 for i in range(len(vtxArray)):
                     faceData += ' ' + str(vtxArray[i] + vertexOffset)
-                    if uv: faceData += ' ( ' + str(faceUArray[i]) + ' ' + str(faceVArray[i]) + ' 0.0 )'
+                    if uv:
+                        faceData += ' ( ' + str(faceUArray[i]) + ' ' + str(faceVArray[i]) + ' 0.0 )'
                 faceData += '\n'
 
                 # Write face data
@@ -396,11 +401,14 @@ def writeObjCache(path, name, mesh, startFrame, endFrame, pad=4, uvSet='', world
     @type gz: bool
     """
     # Check path
-    if not os.path.isdir(path): os.makedirs(path)
+    if not os.path.isdir(path):
+        os.makedirs(path)
 
     # Check mesh
-    if not cmds.objExists(mesh): raise Exception('Mesh "' + mesh + '" does not exist!')
-    if not glTools.utils.mesh.isMesh(mesh): raise Exception('Object "' + mesh + '" is not a valid mesh!')
+    if not cmds.objExists(mesh):
+        raise Exception('Mesh "' + mesh + '" does not exist!')
+    if not glTools.utils.mesh.isMesh(mesh):
+        raise Exception('Object "' + mesh + '" is not a valid mesh!')
 
     # Check UVs
     uv = False
@@ -724,7 +732,8 @@ def gzipCache(path, name, deleteOriginal=False):
     """
     """
     # Check path
-    if not os.path.isdir(path): raise Exception('Path "' + path + '" does not exist!')
+    if not os.path.isdir(path):
+        raise Exception('Path "' + path + '" does not exist!')
 
     # Get directory file list
     dirList = os.listdir(path)

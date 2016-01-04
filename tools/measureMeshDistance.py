@@ -15,7 +15,8 @@ def createBasicMeasure(mesh, vtxId1, vtxId2, prefix):
     @type vtxId2: int
     """
     # Check prefix
-    if not prefix: prefix = 'measureMeshDistance'
+    if not prefix:
+        prefix = 'measureMeshDistance'
 
     # Check baseMesh
     if not cmds.objExists(mesh):
@@ -83,8 +84,8 @@ def addDistanceAttrs(measure, baseMesh):
     Add the default distance and current distance (dynamic) measure attributes
     @param measure: The measure to create distance attributes for
     @type measure: str
-    @param mesh: The mesh to calculate the base distance from
-    @type mesh: str
+    @param baseMesh: The mesh to calculate the base distance from
+    @type baseMesh: str
     """
     # Get prefix
     prefix = measure.replace(measure.split('_')[-1], '')
@@ -121,8 +122,8 @@ def addMeasureAttrs(measure, targetMesh, targetName):
     Add target distance measure attributes
     @param measure: The measure to create target distance attributes for
     @type measure: str
-    @param mesh: The mesh to calculate the target distance from
-    @type mesh: str
+    @param targetMesh: The mesh to calculate the target distance from
+    @type targetMesh: str
     @param targetName: The name of the distance target
     @type targetName: str
     """
@@ -186,8 +187,8 @@ def addMeasureAttrs_old(measure, targetMesh, targetName):
     Add target distance measure attributes
     @param measure: The measure to create target distance attributes for
     @type measure: str
-    @param mesh: The mesh to calculate the target distance from
-    @type mesh: str
+    @param targetMesh: The mesh to calculate the target distance from
+    @type targetMesh: str
     @param targetName: The name of the distance target
     @type targetName: str
     """
@@ -431,7 +432,8 @@ def measureMeshDistanceMulti(baseMesh, vtxId1, vtxId2, inputTargetList, prefix):
     # ----------
 
     # Check prefix
-    if not prefix: prefix = 'measureMeshDistance'
+    if not prefix:
+        prefix = 'measureMeshDistance'
 
     # Check baseMesh
     if not cmds.objExists(baseMesh):
@@ -479,7 +481,8 @@ def measureMeshDistanceMulti(baseMesh, vtxId1, vtxId2, inputTargetList, prefix):
         inputTarget = inputTargetDist[i][1]
 
         # Skip base distance
-        if inputTarget == 'base': continue
+        if inputTarget == 'base':
+            continue
 
         # Add target and distance to inputTargetData
         inputTargetData[inputTarget] = []
@@ -487,9 +490,11 @@ def measureMeshDistanceMulti(baseMesh, vtxId1, vtxId2, inputTargetList, prefix):
 
         # Determine bracket values
         targetBracket = []
-        if i: targetBracket.append(inputTargetDist[i - 1][0])
+        if i:
+            targetBracket.append(inputTargetDist[i - 1][0])
         targetBracket.append(inputDist)
-        if i < (len(inputTargetDist) - 1): targetBracket.append(inputTargetDist[i + 1][0])
+        if i < (len(inputTargetDist) - 1):
+            targetBracket.append(inputTargetDist[i + 1][0])
 
         # Append bracket values to inputTargetData
         inputTargetData[inputTarget].append(targetBracket)

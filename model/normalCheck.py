@@ -50,7 +50,7 @@ def normalCheck(meshList=[]):
     return meshList
 
 
-def normalCheckRemove(meshList=[]):
+def normalCheckRemove(meshList):
     """
     Remove normal check properties for a specified list of meshes.
     @param meshList: List of meshes to removes normal check from
@@ -58,7 +58,8 @@ def normalCheckRemove(meshList=[]):
     """
     # Check Mesh List
     meshList = cleanup.getMeshList(meshList)
-    if not meshList: return []
+    if not meshList:
+        return []
 
     # Remove Normal Check
     for mesh in meshList:

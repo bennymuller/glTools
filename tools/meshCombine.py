@@ -33,7 +33,8 @@ class MeshCombineUtilities(object):
         for i in range(len(objs)):
             cmds.setAttr(new_obj[0] + '.origNames[' + str(i) + ']', objs[i], type='string')
         # Delete history
-        if not keepHistory: cmds.delete(new_obj[1])
+        if not keepHistory:
+            cmds.delete(new_obj[1])
         cmds.delete(objs)
 
         return new_obj[0]
@@ -94,7 +95,8 @@ class MeshCombineUtilities(object):
         # Removed rename of original objects: Objects that are referenced can't be renamed #
         orig_child = cmds.listRelatives(obj_fPath, c=1, ni=1, pa=True)
         for i in orig_child:
-            if cmds.listRelatives(i): cmds.delete(i)
+            if cmds.listRelatives(i):
+                cmds.delete(i)
 
         # handle namespace
         mel.eval('setNS("' + scene_ns + '")')
@@ -125,7 +127,8 @@ class MeshCombineUtilities(object):
         @type ns: str
         """
         # Check namespace
-        if len(ns): ns += ':'
+        if len(ns):
+            ns += ':'
         # Check model node exists
         if not cmds.objExists(ns + 'model'):
             print('Actor "' + ns + '" has no model group!')
@@ -133,15 +136,18 @@ class MeshCombineUtilities(object):
 
         # Iterate through mesh shapes
         meshList = cmds.listRelatives(ns + 'model', ad=1, pa=True, type='mesh')
-        if not meshList: return []
+        if not meshList:
+            return []
         meshParentList = []
         for mesh in meshList:
             # Get mesh transform
             meshParent = cmds.listRelatives(mesh, p=1, pa=True)[0]
             # Check origNames attribute
-            if not cmds.objExists(meshParent + ".origNames"): continue
+            if not cmds.objExists(meshParent + ".origNames"):
+                continue
             # Check intermediate object
-            if cmds.getAttr(mesh + '.intermediateObject'): continue
+            if cmds.getAttr(mesh + '.intermediateObject'):
+                continue
             # Check current mesh against meshParentList
             if not meshParentList.count(meshParent):
                 meshParentList.append(meshParent)
@@ -236,7 +242,8 @@ class MeshCombineUtilities(object):
         @param ns: Namespace of the actor you want to update.
         @type ns: str
         """
-        if len(ns): ns += ':'
+        if len(ns):
+            ns += ':'
         allSeperatedObjs = []
         if not cmds.objExists(ns + 'model'):
             raise Exception('Object "' + ns + 'model" does not exist!')
@@ -247,6 +254,7 @@ class MeshCombineUtilities(object):
         [meshParentList.append(cmds.listRelatives(mesh, p=1, pa=True)[0]) for mesh in meshList if
          not meshParentList.count(cmds.listRelatives(mesh, p=1, pa=True)[0])]
         for meshParent in meshParentList:
-            if not cmds.objExists(meshParent + ".origNames"): continue
+            if not cmds.objExists(meshParent + ".origNames"):
+                continue
             print "Updating: " + meshParent
             self.updateOrigNamesFormat([meshParent])

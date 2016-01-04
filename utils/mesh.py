@@ -765,7 +765,8 @@ def closestPointWeightedAverage(mesh, point=(0, 0, 0)):
     for i in faceVtxArray:
         vPos = glTools.utils.base.getMPoint(mesh + '.vtx[' + str(i) + ']')
         dist = (pos - vPos).length()
-        if dist < 0.00001: dist = 0.00001
+        if dist < 0.00001:
+            dist = 0.00001
         distArray.append(dist)
         totalInvDist += 1.0 / dist
 
@@ -1069,7 +1070,8 @@ def snapToVertex(mesh, transform, vtxId=-1, snapPivot=False):
     pos = glTools.utils.base.getPosition(transform)
 
     # Get mesh vertex to snap to
-    if vtxId < 0: vtxId = closestVertex(mesh, pos)
+    if vtxId < 0:
+        vtxId = closestVertex(mesh, pos)
 
     # Get vertex position
     vtxPt = cmds.pointPosition(mesh + '.vtx[' + str(vtxId) + ']')
@@ -1676,7 +1678,8 @@ def vertexConnectivityList(mesh, faceConnectivity=False, showProgress=False):
             cmds.progressBar(gMainProgressBar, e=True, step=1)
 
     # End Current Progress Bar
-    if showProgress: cmds.progressBar(gMainProgressBar, e=True, endProgress=True)
+    if showProgress:
+        cmds.progressBar(gMainProgressBar, e=True, endProgress=True)
 
     # Return Result
     return vtxConnectList
