@@ -29,6 +29,7 @@ def overrideOffsetAttribute():
 def buildOverrideTransform(transform, prefix=None):
     """
     Build a mocap override transform from the specified input transform
+    @param prefix:
     @param transform: Control transform to create override transforms from
     @type transform: str
     """
