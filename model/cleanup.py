@@ -350,6 +350,7 @@ def freezeVertexTransforms(meshList=[]):
 def mergeUVs(meshList=[], dist=0.0001):
     """
     Merge UVs
+    @param dist:
     @param meshList: List of meshes to merge UVs on. If empty, check all mesh objects in the scene.
     @type meshList: list
     """
@@ -368,6 +369,7 @@ def mergeUVs(meshList=[], dist=0.0001):
 def assignInitialShadingGroup(geoList=[]):
     """
     Wrapper function for moved method.
+    @param geoList:
     """
     # Run Command
     return glTools.utils.cleanup.assignInitialShadingGroup(geoList)
@@ -375,6 +377,7 @@ def assignInitialShadingGroup(geoList=[]):
 
 def bakeCreaseSets(creaseSets=[]):
     """
+    @param creaseSets:
     """
     # Check Crease Sets
     if not creaseSets: creaseSets = checkCreaseSets()

@@ -151,6 +151,7 @@ def checkJointTranslation(joint, offsetAxis='', ignoreMultipleSibling=False):
 
 def checkBipedTemplate(fix=False):
     """
+    @param fix:
     """
     # ============================
     # - Define Template Elements -

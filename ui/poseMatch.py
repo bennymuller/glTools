@@ -111,6 +111,7 @@ def evalOrderUIrefreshList(evalOrderList=[]):
     """
     UI method for Evaluation Order setup tools
     Refreshes the evaluation order textScrollList
+    @param evalOrderList:
     """
     # Get evalOrder list
     if not evalOrderList: evalOrderList = gEvalOrder.hierarchy.generationList()

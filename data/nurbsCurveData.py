@@ -34,6 +34,7 @@ class NurbsCurveData(data.Data):
     def buildData(self, curve, worldSpace=False):
         """
         Build NurbsCurveData class.
+        @param worldSpace:
         @param curve: Curve to build data from
         @type curve: str
         """

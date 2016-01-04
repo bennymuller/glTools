@@ -20,6 +20,7 @@ class LatticeData(deformerData.DeformerData):
 
     def buildData(self, deformer):
         """
+        @param deformer:
         """
         # ==========
         # - Checks -

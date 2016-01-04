@@ -11,16 +11,19 @@ def isHairSystem(hairSystem):
     """
     """
     # Check object exists
-    if not cmds.objExists(hairSystem): return False
+    if not cmds.objExists(hairSystem):
+        return False
 
     # Check transform
     if cmds.objectType(hairSystem) == 'transform':
         hairSystemShape = cmds.listRelatives(hairSystem, s=True, pa=True)
-        if not hairSystemShape: return False
+        if not hairSystemShape:
+            return False
         hairSystem = hairSystemShape[0]
 
     # Check hairSystem
-    if cmds.objectType(hairSystem) == 'hairSystem': return True
+    if cmds.objectType(hairSystem) == 'hairSystem':
+        return True
 
     # Return result
     return False
@@ -30,16 +33,19 @@ def isFollicle(follicle):
     """
     """
     # Check object exists
-    if not cmds.objExists(follicle): return False
+    if not cmds.objExists(follicle):
+        return False
 
     # Check transform
     if cmds.objectType(follicle) == 'transform':
         follicleShape = cmds.listRelatives(follicle, s=True, pa=True)
-        if not follicleShape: return False
+        if not follicleShape:
+            return False
         follicle = follicleShape[0]
 
     # Check hairSystem
-    if cmds.objectType(follicle) == 'follicle': return True
+    if cmds.objectType(follicle) == 'follicle':
+        return True
 
     # Return result
     return False

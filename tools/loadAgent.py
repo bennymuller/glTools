@@ -97,14 +97,19 @@ def loadCallsheetData():
 
     # List Agents
     for agent in agents:
-        if 'reverse_agent' in agent: continue
-        if 'avoid_agent' in agent: continue
-        if 'util_agent' in agent: continue
+        if 'reverse_agent' in agent:
+            continue
+        if 'avoid_agent' in agent:
+            continue
+        if 'util_agent' in agent:
+            continue
         cmds.textScrollList(agentTSL, e=True, a=agent)
 
 
 def agentVars(callsheetFile, agent):
     """
+    @param callsheetFile:
+    @param agent:
     """
     # Get Agent Data
     callsheet = csh.Callsheet()

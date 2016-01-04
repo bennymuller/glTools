@@ -380,6 +380,7 @@ class ChannelData(data.Data):
     def nodeChannels(self, node):
         """
         Return a list of stored channel data for the specified node.
+        @param node:
         """
         if not self._channelData.has_key(node):
             if self.verbosity > 0: print('ChannelData: No channel data stored for "' + node + '"!! Skipping...')

@@ -32,6 +32,7 @@ class SkinClusterData(deformerData.MultiInfluenceDeformerData):
 
     def verifySkinCluster(self, skinCluster):
         """
+        @param skinCluster:
         """
         # Check skinCluster
         if not glTools.utils.skinCluster.isSkinCluster(skinCluster):
@@ -498,6 +499,7 @@ class SkinClusterData(deformerData.MultiInfluenceDeformerData):
         """
         Combine stored skinCluster influence data from a list of source influences to a single target influence.
         Source influences data will be removed.
+        @param removeSource:
         @param sourceInfluenceList: The list influence data to combine
         @type sourceInfluenceList: str
         @param targetInfluence: The target influence to remap the combined data to.

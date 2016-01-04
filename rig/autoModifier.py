@@ -9,6 +9,7 @@ def autoModifierAttribute():
 
 def buildModifiers(moduleTemplateGrp):
     """
+    @param moduleTemplateGrp:
     """
     pass
 

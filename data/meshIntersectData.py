@@ -22,6 +22,7 @@ class MeshIntersectData(meshData.MeshData):
 
     def getClosestPointList(self, ptList):
         """
+        @param ptList:
         """
         # Start timer
         timer = cmds.timerX()
@@ -85,6 +86,7 @@ class MeshIntersectData(meshData.MeshData):
 
     def getClosestPointCoords(self, ptList):
         """
+        @param ptList:
         """
         # Start timer
         timer = cmds.timerX()

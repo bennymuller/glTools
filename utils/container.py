@@ -8,9 +8,11 @@ def isContainer(node):
     @type containerNode: str
     """
     # Check Node Exists
-    if not cmds.objExists(node): return False
+    if not cmds.objExists(node):
+        return False
     # Check Node Inheritance
-    if not 'containerBase' in cmds.nodeType(node, i=True): return False
+    if not 'containerBase' in cmds.nodeType(node, i=True):
+        return False
     # Check Exact Node Type
     # if not cmds.objectType(containerNode) == 'dagContainer' and not cmds.objectType(containerNode) == 'container': return False
     # Return Result

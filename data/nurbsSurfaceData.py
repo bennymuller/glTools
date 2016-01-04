@@ -34,6 +34,7 @@ class NurbsSurfaceData(data.Data):
     def buildData(self, surface, worldSpace=False):
         """
         Build NurbsSurfaceData class.
+        @param worldSpace:
         @param surface: Surface to build data from
         @type surface: str
         """

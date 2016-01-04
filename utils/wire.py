@@ -9,9 +9,11 @@ def isWire(wire):
     @type wrap: str
     """
     # Check Object Exists
-    if not cmds.objExists(wire): return False
+    if not cmds.objExists(wire):
+        return False
     # Check Object Type
-    if not cmds.objectType(wire) == 'wire': return False
+    if not cmds.objectType(wire) == 'wire':
+        return False
     # Return Result
     return True
 

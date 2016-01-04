@@ -8,7 +8,8 @@ import glTools.utils.matrix
 import math
 
 
-class UserInterupted(Exception): pass
+class UserInterupted(Exception):
+    pass
 
 
 def isMesh(mesh):
@@ -18,12 +19,14 @@ def isMesh(mesh):
     @type mesh: str
     """
     # Check Object Exists
-    if not cmds.objExists(mesh): return False
+    if not cmds.objExists(mesh):
+        return False
 
     # Check Shape
     if 'transform' in cmds.nodeType(mesh, i=True):
         meshShape = cmds.ls(cmds.listRelatives(mesh, s=True, ni=True, pa=True) or [], type='mesh')
-        if not meshShape: return False
+        if not meshShape:
+            return False
         mesh = meshShape[0]
 
     # Check Mesh
@@ -65,7 +68,8 @@ def getMeshFn(mesh):
     @type mesh: str
     """
     # Checks
-    if not isMesh(mesh): raise Exception('Object ' + mesh + ' is not a polygon mesh!')
+    if not isMesh(mesh):
+        raise Exception('Object ' + mesh + ' is not a polygon mesh!')
 
     # Get shape
     if cmds.objectType(mesh) == 'transform':
@@ -379,8 +383,10 @@ def reassignUVs(mesh, precision=4):
     # Set UVs
     uArrayNew = OpenMaya.MFloatArray()
     vArrayNew = OpenMaya.MFloatArray()
-    for i in u: uArrayNew.append(round(i, precision))
-    for i in v: vArrayNew.append(round(i, precision))
+    for i in u:
+        uArrayNew.append(round(i, precision))
+    for i in v:
+        vArrayNew.append(round(i, precision))
     meshFn.setUVs(uArrayNew, vArrayNew)
 
     # Reassign UVs
@@ -573,7 +579,8 @@ def closestPoint(mesh, point=(0, 0, 0)):
     @type point: tuple
     """
     # Check mesh
-    if not isMesh(mesh): raise Exception('Object ' + mesh + ' is not a polygon mesh!')
+    if not isMesh(mesh):
+        raise Exception('Object ' + mesh + ' is not a polygon mesh!')
 
     # Get MPoint
     pos = glTools.utils.base.getMPoint(point)
@@ -1035,8 +1042,9 @@ def orientToMesh(mesh, transform, upVector=(0, 1, 0), upVectorObject='', normalA
 
     # Check upVector object
     if upVectorObject:
-        if not cmds.objExists(upVectorObject): raise Exception(
-            'UpVector object "' + upVectorObject + '" does not exist!!')
+        if not cmds.objExists(upVectorObject):
+            raise Exception(
+                'UpVector object "' + upVectorObject + '" does not exist!!')
         upVectorMat = glTools.utils.matrix.buildMatrix(transform=upVectorObject)
         upVector = glTools.utils.matrix.vectorMatrixMultiply(upVector, upVectorMat, transformAsPoint=False,
                                                              invertMatrix=False)
@@ -1097,7 +1105,8 @@ def snapPtsToMesh_old(mesh, pointList, amount=1.0):
     @type amount: float
     """
     # Check mesh
-    if not isMesh(mesh): raise Exception('Object ' + mesh + ' is not a valid mesh!')
+    if not isMesh(mesh):
+        raise Exception('Object ' + mesh + ' is not a valid mesh!')
 
     # Check points
     pointList = cmds.ls(pointList, fl=True)
@@ -1653,7 +1662,7 @@ def vertexConnectivityList(mesh, faceConnectivity=False, showProgress=False):
     if showProgress:
         vtxCount = cmds.polyEvaluate(mesh, v=True)
         cmds.progressBar(gMainProgressBar, e=True, bp=True, ii=True, status=('Building Vertex Connectivity Array...'),
-                       maxValue=vtxCount)
+                         maxValue=vtxCount)
 
     # Initialize Connectivity List
     vtxConnectList = []
@@ -1709,7 +1718,7 @@ def vertexConnectivityDict(mesh, vtxIDs, faceConnectivity=False, showProgress=Fa
     gMainProgressBar = mel.eval('$tmp = $gMainProgressBar')
     if showProgress:
         cmds.progressBar(gMainProgressBar, e=True, bp=True, ii=True, status=('Building Vertex Connectivity Array...'),
-                       maxValue=len(vtxIDs))
+                         maxValue=len(vtxIDs))
 
     # Initialize Connectivity List
     vtxConnectDict = {}
@@ -1762,7 +1771,7 @@ def faceVertexList(mesh, showProgress=False):
     gMainProgressBar = mel.eval('$tmp = $gMainProgressBar')
     if showProgress:
         cmds.progressBar(gMainProgressBar, e=True, bp=True, ii=True, status=('Building Face Vertex Array...'),
-                       maxValue=faceIter.count())
+                         maxValue=faceIter.count())
 
     # Initialize Connectivity List
     faceVertexList = []
@@ -1828,7 +1837,7 @@ def faceVertexDict(mesh, faceIDs, showProgress=False):
     gMainProgressBar = mel.eval('$tmp = $gMainProgressBar')
     if showProgress:
         cmds.progressBar(gMainProgressBar, e=True, bp=True, ii=True, status=('Building Face Vertex Array...'),
-                       maxValue=len(faceIDs))
+                         maxValue=len(faceIDs))
 
     # Initialize Connectivity List
     faceVertexDict = {}
@@ -2016,7 +2025,8 @@ def polyCleanup(meshList=[],
     else:
         cmds.select(cl=True)
     hiliteList = cmds.ls(hilite=True)
-    if hiliteList: cmds.hilite(hiliteList, tgl=False)
+    if hiliteList:
+        cmds.hilite(hiliteList, tgl=False)
 
     # Return Result
     return result

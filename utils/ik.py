@@ -11,8 +11,10 @@ def getAffectedJoints(ikHandle):
     @type ikHandle: str
     """
     # Check ikHandle
-    if not cmds.objExists(ikHandle): raise Exception('IK handle ' + ikHandle + ' does not exist!')
-    if cmds.objectType(ikHandle) != 'ikHandle': raise Exception('Object ' + ikHandle + ' is not a valid ikHandle!')
+    if not cmds.objExists(ikHandle):
+        raise Exception('IK handle ' + ikHandle + ' does not exist!')
+    if cmds.objectType(ikHandle) != 'ikHandle':
+        raise Exception('Object ' + ikHandle + ' is not a valid ikHandle!')
 
     # Get startJoint
     startJoint = cmds.listConnections(ikHandle + '.startJoint', s=True, d=False)[0]

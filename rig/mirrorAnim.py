@@ -4,6 +4,8 @@ import glTools.utils.namespace
 
 def cutPasteKey(src, dst):
     """
+    @param dst:
+    @param src:
     """
     keys = cmds.cutKey(src)
     if keys: cmds.pasteKey(dst)
@@ -11,6 +13,8 @@ def cutPasteKey(src, dst):
 
 def swapAnim(srcCtrl, dstCtrl):
     """
+    @param srcCtrl:
+    @param dstCtrl:
     """
     # Temp Key Node
     tmpCtrl = cmds.duplicate(srcCtrl, po=True, n=srcCtrl + 'TEMP')[0]

@@ -345,6 +345,10 @@ def createCtrlPtProj(curve,
     """
     Create a control point (locator) curve and project to guide surface.
     Control points are projected to guide using a meshIntersectArray node.
+    @param curve:
+    @param nucmdstrlPts:
+    @param meshIntersect:
+    @param prefix:
     """
     # Check Prefix
     if not prefix: prefix = glTools.utils.stringUtils.stripSuffix(curve)
@@ -391,6 +395,10 @@ def createAnchors(curve,
                   useDistance=False,
                   prefix=None):
     """
+    @param curve:
+    @param numAnchors:
+    @param useDistance:
+    @param prefix:
     """
     # Check Prefix
     if not prefix: prefix = glTools.utils.stringUtils.stripSuffix(curve)
@@ -429,6 +437,11 @@ def createIntermediates(curve,
                         numIntermediates=1,
                         prefix=None):
     """
+    @param curve:
+    @param anchor1:
+    @param anchor2:
+    @param numIntermediates:
+    @param prefix:
     """
     # ==========
     # - Checks -
@@ -476,6 +489,13 @@ def buildLinearPoints(curve,
                       suffix=None):
     """
     Create locators along curve and project to mesh using geometry and normal constraints.
+    @param curve:
+    @param nucmdstrl:
+    @param useDistance:
+    @param guideSrf:
+    @param orient:
+    @param prefix:
+    @param suffix:
     """
     # ==========
     # - Checks -

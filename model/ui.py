@@ -3,6 +3,8 @@ import maya.cmds as cmds
 
 def displayListWindow(itemList, title):
     """
+    @param itemList:
+    @param title:
     """
     # Check itemList
     if not itemList: return
@@ -32,6 +34,8 @@ def displayListWindow(itemList, title):
 
 def reportWindow(msg, title):
     """
+    @param msg:
+    @param title:
     """
     # Check message
     if not msg: return

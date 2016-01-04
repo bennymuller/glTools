@@ -9,7 +9,8 @@ def addDefaultAttrState(objList):
     @type objList: list
     """
     # Check objList
-    if not objList: return
+    if not objList:
+        return
 
     # Define defaultAttrState attribute name
     defAttr = 'defaultAttrState'

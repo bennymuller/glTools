@@ -182,10 +182,8 @@ class DeformerData(data.Data):
     def remapGeometry(self, oldGeometry, newGeometry):
         """
         Remap the stored deformer data from one geometry to another.
-        @param oldGeo: The geometry to remap the deformer data from
-        @type oldGeo: str
-        @param newGeo: The geometry to remap the deformer data to
-        @type newGeo: str
+        @param oldGeometry:
+        @param newGeometry:
         """
         # ==========
         # - Checks -
@@ -663,6 +661,7 @@ class DeformerData(data.Data):
 
     def customDeformerAttributes(self, deformerType):
         """
+        @param deformerType:
         """
         # Curve Twist
         if deformerType == 'curveTwist':

@@ -8,7 +8,8 @@ def measureBoundingBox(geo):
     @type geo: str
     """
     # Check Geo
-    if not cmds.objExists(geo): raise Exception('Geometry "' + geo + '" does not exist!!')
+    if not cmds.objExists(geo):
+        raise Exception('Geometry "' + geo + '" does not exist!!')
 
     # ==============================
     # - Create Distance Dimensions -
@@ -66,7 +67,8 @@ def measureBoundingBox(geo):
     cmds.connectAttr(addDepthNode + '.output3D', dDimension + '.endPoint', f=True)
 
     # Delete Unused Locators
-    if del_locs: cmds.delete(del_locs)
+    if del_locs:
+        cmds.delete(del_locs)
 
     # Return Result
     return measure_grp

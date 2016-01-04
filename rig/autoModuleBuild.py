@@ -10,6 +10,8 @@ def checkModuleTemplate(moduleTemplateGrp, moduleType, moduleAttrs):
     """
     Check for standard module template elements.
     Raise Exception if anything is missing or incorrect.
+    @param moduleType:
+    @param moduleAttrs:
     @param moduleTemplateGrp: The module template group to perform checks on
     @type moduleTemplateGrp: str
     """

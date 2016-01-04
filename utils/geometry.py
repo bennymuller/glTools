@@ -9,7 +9,8 @@ def isGeometry(geometry):
     @type geometry: str
     """
     # Check Object Exists
-    if not cmds.objExists(geometry): return False
+    if not cmds.objExists(geometry):
+        return False
 
     # Check Shape
     if 'transform' in cmds.nodeType(geometry, i=True):

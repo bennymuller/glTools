@@ -8,7 +8,8 @@ def create():
     """
     # This is a temporary hack to get maya to evaluate $gMainWindow
     gMainWindow = mel.eval('string $temp = $gMainWindow')
-    if cmds.menu('modelToolsMenu', q=True, ex=True): cmds.deleteUI('modelToolsMenu')
+    if cmds.menu('modelToolsMenu', q=True, ex=True):
+        cmds.deleteUI('modelToolsMenu')
 
     if gMainWindow:
         cmds.setParent(gMainWindow)

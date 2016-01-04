@@ -1,4 +1,5 @@
 import maya.cmds as cmds
+import maya.mel as mel
 import glTools.tools.controlBuilder
 import glTools.utils.base
 import glTools.utils.channelState
@@ -42,13 +43,16 @@ class PivotObject(object):
         @type maintainPivotInfo: bool
         """
         # Check for existing Pivot Object
-        if cmds.objExists(self.pivotControlName): self.kill()
+        if cmds.objExists(self.pivotControlName):
+            self.kill()
 
         # Check control list
         for ctrl in ctrlList:
-            if not cmds.objExists(ctrl): raise UserInputError('Control object ' + ctrl + ' does not exists!')
+            if not cmds.objExists(ctrl):
+                raise UserInputError('Control object ' + ctrl + ' does not exists!')
         # Check pivot object
-        if not cmds.objExists(pivotObj): raise UserInputError('Pivot object ' + pivotObj + ' does not exists!')
+        if not cmds.objExists(pivotObj):
+            raise UserInputError('Pivot object ' + pivotObj + ' does not exists!')
 
         # Create pivot control
         pivCtrl = glTools.tools.controlBuilder.create('sphere', self.pivotControlName)['control']
@@ -89,7 +93,8 @@ class PivotObject(object):
         cmds.select(self.pivotControlName)
 
         # Setup kill scriptJob
-        if initializeCleanUpJob: self.cleanUpJob(maintainPivotInfo)
+        if initializeCleanUpJob:
+            self.cleanUpJob(maintainPivotInfo)
 
     def cleanUp(self, maintainPivotInfo=False):
         """
@@ -101,7 +106,8 @@ class PivotObject(object):
         if cmds.objExists(self.pivotControlName):
 
             # Check maintain info
-            if maintainPivotInfo: self.pivotLocator()
+            if maintainPivotInfo:
+                self.pivotLocator()
 
             # Get constraint/control lists
             controlList = []
@@ -110,7 +116,8 @@ class PivotObject(object):
              cmds.listConnections('PivotCONTROL', s=False, d=True, type='constraint') if not constraintList.count(conn)]
             for constraint in constraintList:
                 constraintSlave = cmds.listConnections(constraint + '.constraintRotatePivot', s=1, d=0)
-                if constraintSlave: controlList.append(constraintSlave[0])
+                if constraintSlave:
+                    controlList.append(constraintSlave[0])
             # Record control transform values
             controlTransforms = {}
             for ctrl in controlList:
@@ -184,7 +191,8 @@ class PivotObject(object):
         constraintList.sort()
         for constraint in constraintList:
             constraintSlave = cmds.listConnections(constraint + '.constraintRotatePivot', s=1, d=0)
-            if constraintSlave: controlList.append(constraintSlave[0])
+            if constraintSlave:
+                controlList.append(constraintSlave[0])
         # Add control list values to locator string array attribute
         if len(controlList):
             cmds.addAttr(pivLoc, ln='controlList', m=True, dt='string')

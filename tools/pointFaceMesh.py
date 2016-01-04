@@ -1,5 +1,4 @@
 import maya.cmds as cmds
-import maya.mel as mel
 import maya.OpenMaya as OpenMaya
 import glTools.utils.base
 import glTools.utils.transform
@@ -7,6 +6,10 @@ import glTools.utils.transform
 
 def pointFaceMesh(pointList, scale=0.05, combine=True, prefix='pointFace'):
     """
+    @param pointList:
+    @param scale:
+    @param combine:
+    @param prefix:
     """
     # Get encoded point list
     ptList = []
@@ -37,6 +40,11 @@ def pointFaceMesh(pointList, scale=0.05, combine=True, prefix='pointFace'):
 
 def transformFaceMesh(transformList, faceAxis='y', scale=0.05, combine=True, prefix='transformFace'):
     """
+    @param transformList:
+    @param faceAxis:
+    @param scale:
+    @param combine:
+    @param prefix:
     """
     # Checks
     faceAxis = faceAxis.lower()

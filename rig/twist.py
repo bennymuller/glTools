@@ -82,12 +82,11 @@ def build(sourceJoint,
           prefix=''):
     """
     Build twist joint setup using an aicmdsonstraint to calculate rotation.
+    @param numJoints:
     @param sourceJoint: Twist base joint
     @type sourceJoint: str
     @param targetJoint: Twist target or end joint
     @type targetJoint: str
-    @param numJoint: Number of twist joints to generate
-    @type numJoint: int
     @param aimAxis: Axis along the length of the source joint
     @type aimAxis: list or tuple
     @param upAxis: Upward facing axis of the source joint
@@ -258,12 +257,11 @@ def build_shoulder(shoulder,
                    prefix=''):
     """
     Build shoudler twist using custom shoulderConstraint node
+    @param numJoints:
     @param shoulder: Shoulder or upper arm joint
     @type shoulder: str
     @param spine: Spine end joint
     @type spine: str
-    @param numJoint: Number of twist joints to generate
-    @type numJoint: int
     @param shoulderAim: Axis along the length of the shoulder joint
     @type shoulderAim: list or tuple
     @param shoulderFront: Forward facing axis of the shoulder joint
@@ -453,12 +451,11 @@ def build_hip(hip,
               prefix=''):
     """
     Build hip twist using custom hipConstraint node
+    @param numJoints:
     @param hip: Hip or upper leg joint
     @type hip: str
     @param pelvis: Pelvis joint
     @type pelvis: str
-    @param numJoint: Number of twist joints to generate
-    @type numJoint: int
     @param hipAim: Axis along the length of the hip/leg joint
     @type hipAim: list or tuple
     @param hipFront: Forward facing axis of the hip/leg joint

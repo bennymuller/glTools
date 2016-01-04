@@ -11,9 +11,11 @@ def isBlendShape(blendShape):
     @type blendShape: str
     """
     # Check blendShape exists
-    if not cmds.objExists(blendShape): return False
+    if not cmds.objExists(blendShape):
+        return False
     # Check object type
-    if cmds.objectType(blendShape) != 'blendShape': return False
+    if cmds.objectType(blendShape) != 'blendShape':
+        return False
     # Return result
     return True
 

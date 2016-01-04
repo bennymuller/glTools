@@ -11,7 +11,8 @@ def isFollicle(follicle):
     @type follicle: str
     """
     # Check Object Exists
-    if not cmds.objExists(follicle): return False
+    if not cmds.objExists(follicle):
+        return False
 
     # Check Shape
     if 'transform' in cmds.nodeType(follicle, i=True):

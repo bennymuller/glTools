@@ -8,6 +8,7 @@ import glTools.tools.controlBuilder
 def moduleTemplateDialog(buildMethod):
     """
     Create a basic prompt dialog to allow the user to provide a name for the module
+    @param buildMethod:
     """
     # Raise Prompt Dialog - Get Module Name
     result = cmds.promptDialog(title='Module Name',
@@ -167,8 +168,6 @@ def baseModuleTemplate(moduleName,
     @type moduleName: str
     @param moduleNodes: Existing module nodes to parent to module template group
     @type moduleNodes: list
-    @param attachParent: Attach joint parent. If empty, use module influence group.
-    @type attachParent: str
     @param asset_name: Asset name
     @type asset_name: str
     @param asset_type: Asset type

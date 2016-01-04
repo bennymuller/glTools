@@ -19,6 +19,8 @@ def straightenVerts(edgeList,
                     deleteHistory=False):
     """
     Straighten specified polygon vertices.
+    @param influence:
+    @param keepEdgeSpacing:
     @param edgeList: List of polygon edges to straighten.
     @type edgeList: list
     @param falloff: Falloff distance around selected vertices.
@@ -353,6 +355,12 @@ def smoothEdgeLine(edgeList,
                    keepEdgeSpacing=False,
                    deleteHistory=False):
     """
+    @param edgeList:
+    @param smooth:
+    @param falloff:
+    @param snapToOrig:
+    @param keepEdgeSpacing:
+    @param deleteHistory:
     """
     # Get Edge List
     edgeList = cmds.filterExpand(edgeList, ex=True, sm=32) or []

@@ -10,7 +10,8 @@ def isTangentBlend(tangentBlend):
     @type tangentBlend: str
     """
     # Check blendShape exists
-    if not cmds.objExists(tangentBlend): return False
+    if not cmds.objExists(tangentBlend):
+        return False
     # Check object type
     if cmds.objectType(tangentBlend) != 'tangentBlendDeformer':
         return False

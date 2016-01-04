@@ -29,8 +29,7 @@ class NConstraintData(data.Data):
     def buildData(self, nConstraint):
         """
         Build setData class.
-        @param setNode: Set to initialize data for
-        @type setNode: str
+        @param nConstraint:
         """
         # ==========
         # - Checks -
@@ -69,10 +68,6 @@ class NConstraintData(data.Data):
     def rebuild(self):
         """
         Rebuild the set from the stored setData.
-        @param mode: Membership mode if the specified set already exists. Accepted values are "add" and "replace".
-        @type mode: str
-        @param forceMembership: Forces addition of items to the set. If items are in another set which is in the same partition as the given set, the items will be removed from the other set in order to keep the sets in the partition mutually exclusive with respect to membership.
-        @type forceMembership: bool
         """
         # ==========
         # - Checks -

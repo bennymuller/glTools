@@ -11,7 +11,8 @@ def stripSuffix(name, delineator='_'):
     @type delineator: str
     """
     # Check for Delineator in Name
-    if not name.count(delineator): return name
+    if not name.count(delineator):
+        return name
     # Determine Suffix
     suffix = name.split(delineator)[-1]
     # Remove Suffix
@@ -31,14 +32,15 @@ def stringIndex(index, padding=2):
     # Convert to String
     strInd = str(index)
     # Prepend Padding
-    for i in range(padding - len(strInd)): strInd = '0' + strInd
+    for i in range(padding - len(strInd)):
+        strInd = '0' + strInd
     # Return Result
     return strInd
 
 
 def alphaIndex(index, upper=True):
     """
-    Return the alpha string equivalent for the specified iteger index.
+    Return the alpha string equivalent for the specified integer index.
     @param index: The index to get the alpha string equivalent for
     @type index: int
     @param upper: Return the result in upper case form
@@ -56,7 +58,8 @@ def alphaIndex(index, upper=True):
         depth = depth / 26.0
 
     # Check Case
-    if upper: alphaInd = alphaInd.upper()
+    if upper:
+        alphaInd = alphaInd.upper()
 
     # Return result
     return alphaInd

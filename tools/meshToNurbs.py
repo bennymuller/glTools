@@ -6,9 +6,15 @@ import glTools.utils.stringUtils
 
 def meshToNurbs(mesh, rebuild=False, spansU=0, spansV=0, prefix=''):
     """
+    @param mesh:
+    @param rebuild:
+    @param spansU:
+    @param spansV:
+    @param prefix:
     """
     # Check prefix
-    if not prefix: prefix = glTools.utils.stringUtils.stripSuffix(mesh)
+    if not prefix:
+        prefix = glTools.utils.stringUtils.stripSuffix(mesh)
 
     # Convert poly to subdiv
     subd = cmds.polyToSubdiv(mesh, ch=False, preserveVertexOrdering=True)[0]

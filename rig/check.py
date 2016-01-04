@@ -174,6 +174,7 @@ def inverseScaleConnected(joint, connectedTo=None):
 def attrsAtDefault(obj, attrList=None, tol=0.000001):
     """
     Check object attributes are at default values.
+    @param tol:
     @param obj: Object to check default attribute values on.
     @type obj: str
     @param attrList: List of attributes to check.

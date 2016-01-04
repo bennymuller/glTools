@@ -6,7 +6,8 @@ def loadPlugin():
     """
     # Load plugin
     plugin = 'glToolsTools'
-    if not cmds.pluginInfo(plugin, q=True, l=True): cmds.loadPlugin(plugin)
+    if not cmds.pluginInfo(plugin, q=True, l=True):
+        cmds.loadPlugin(plugin)
 
 
 def create(input, refTargetList=[], prefix=''):

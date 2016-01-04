@@ -236,6 +236,9 @@ def match(ctrl):
 
 def matchAnim(ctrl, start=None, end=None):
     """
+    @param ctrl:
+    @param start:
+    @param end:
     """
     # ==========
     # - Checks -
@@ -941,6 +944,7 @@ def limbsIkToFkOLD(rigNS, start=None, end=None, sampleBy=1):
 def limbsIkToFk(rigNS, start=None, end=None, sampleBy=1, lock=False):
     """
     Bake IK limb animation to FK controls
+    @param lock:
     @param rigNS: IK/FK toggle attribute
     @type rigNS: str
     @param start: Transfer animation start frame

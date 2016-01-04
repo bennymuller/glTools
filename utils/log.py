@@ -7,7 +7,8 @@ def openLog(logDir, logName, mode='a'):
     """
     """
     # Check directory
-    if not os.path.isdir(logDir): os.makedirs(logDir)
+    if not os.path.isdir(logDir):
+        os.makedirs(logDir)
 
     # Open file for writing
     logFile = logDir + '/' + logName

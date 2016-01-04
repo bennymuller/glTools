@@ -493,6 +493,7 @@ def deleteNucleusFromUI():
 
 def toggleNucleusFromUI(state):
     """
+    @param state:
     """
     # Check UI
     checkUI()
@@ -591,6 +592,7 @@ def addNClothToNucleusFromUI():
 
 def toggleNClothStateFromUI(state):
     """
+    @param state:
     """
     # Check UI
     checkUI()
@@ -706,6 +708,7 @@ def addNRigidToNucleusFromUI():
 
 def toggleNRigidStateFromUI(state):
     """
+    @param state:
     """
     # Check UI
     checkUI()

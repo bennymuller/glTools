@@ -5,6 +5,7 @@ import glTools.utils.resolution
 def addResAttr(isProp=True):
     """
     Wrapper for addResolutionAttr.
+    @param isProp:
     @input isProp: Set the resolution enum attribute array based on this value (prop/character).
     @inputType isProp: bool
     """

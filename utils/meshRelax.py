@@ -6,7 +6,8 @@ import glTools.utils.mathUtils
 import glTools.utils.surface
 
 
-class UserInputError(Exception): pass
+class UserInputError(Exception):
+    pass
 
 
 def neighbour(vertexList, referenceObject, meshRelax):

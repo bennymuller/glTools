@@ -7,10 +7,14 @@ def isLayer(obj):
     @param obj: Object to check as layer
     @type obj: bool
     """
-    if not cmds.objExists(obj): return False
-    if cmds.objectType(obj) == 'displayLayer': return True
-    if cmds.objectType(obj) == 'renderLayer': return True
-    if cmds.objectType(obj) == 'animLayer': return True
+    if not cmds.objExists(obj):
+        return False
+    if cmds.objectType(obj) == 'displayLayer':
+        return True
+    if cmds.objectType(obj) == 'renderLayer':
+        return True
+    if cmds.objectType(obj) == 'animLayer':
+        return True
     return False
 
 

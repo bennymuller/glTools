@@ -7,7 +7,8 @@ def softBody(geometry, prefix=''):
     """
     """
     # Check prefix
-    if not prefix: prefix = geometry
+    if not prefix:
+        prefix = geometry
 
     # Check geometry
     geometryType = cmds.objectType(geometry)

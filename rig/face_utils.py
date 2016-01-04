@@ -66,6 +66,7 @@ def ctrlOffsetGrp(ctrl,
     """
     Create control offset group.
     Optionally, set custom pivot and orientation.
+    @param prefix:
     @param ctrl: Control or control group to create offset group for.
     @type ctrl: str
     @param pivot: Transform for pivot match. If None, use control pivot.
@@ -271,6 +272,8 @@ def surfaceConstrainedCtrl(surface,
                            prefix=None):
     """
     Create a control object that is constrained to the surface of a specified geometry shape
+    @param ctrlPosition:
+    @param ctrlRotate:
     @param surface: Geometry to attach the control to.
     @type surface: str
     @param ctrlPt: Control position.
@@ -519,6 +522,11 @@ def constrainToSurface_rayIntersect(surface, target, xform, rayOrigin, allowOffs
 
 def secondaryControlInfluence(localTransGrp, slaveCtrl, targetCtrlList, targetAliasList, prefix=''):
     """
+    @param localTransGrp:
+    @param slaveCtrl:
+    @param targetCtrlList:
+    @param targetAliasList:
+    @param prefix:
     """
     # ==========
     # - Checks -
@@ -564,6 +572,10 @@ def secondaryControlInfluence(localTransGrp, slaveCtrl, targetCtrlList, targetAl
 
 def midControlConstraint(ctrlXform, target1, target2, prefix):
     """
+    @param ctrlXform:
+    @param target1:
+    @param target2:
+    @param prefix:
     """
     # Create target locators
     loc1 = cmds.spaceLocator(n=prefix + '_target1_loc')[0]
@@ -585,6 +597,12 @@ def midControlConstraint(ctrlXform, target1, target2, prefix):
 
 def blendUpVector(constraint, target1, target2, upVector=[0, 1, 0], blendAttr='', prefix=''):
     """
+    @param constraint:
+    @param target1:
+    @param target2:
+    @param upVector:
+    @param blendAttr:
+    @param prefix:
     """
     # Get target world upVectors
     targetVector1 = cmds.createNode('vectorProduct', n=prefix + '_targetVector1_vectorProduct')
@@ -625,6 +643,11 @@ def blendUpVector(constraint, target1, target2, upVector=[0, 1, 0], blendAttr=''
 
 def ctrlMeshConstraint(ctrl, ctrlRef='', faceAxis='y', faceScale=0.05, prefix=''):
     """
+    @param ctrl:
+    @param ctrlRef:
+    @param faceAxis:
+    @param faceScale:
+    @param prefix:
     """
     # ==========
     # - Checks -
@@ -722,6 +745,7 @@ def createVertexLocators(vtxList, locScale=0.1, prefix=''):
 
 def createControlLocators(ptList):
     """
+    @param ptList:
     """
     pass
 

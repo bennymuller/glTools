@@ -33,6 +33,7 @@ class ChannelStateData(channelData.ChannelData):
     def buildData(self, nodeList=None, chanList=None):
         """
         Build ChannelData class.
+        @param chanList:
         @param nodeList: List of nodes to store channel values and connections for.
         @type nodeList: list
         """
@@ -382,6 +383,7 @@ class ChannelStateData(channelData.ChannelData):
     def nodeChannels(self, node):
         """
         Return a list of stored channel data for the specified node.
+        @param node:
         """
         if not self._channelData.has_key(node):
             if self.verbosity > 0: print('ChannelData: No channel data stored for "' + node + '"!! Skipping...')

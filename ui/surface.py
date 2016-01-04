@@ -190,6 +190,7 @@ def snapToSurfaceUI():
 def snapToSurfaceFromUI(close=False):
     """
     Execute snapToSurface() from UI
+    @param close:
     """
     # Window
     window = 'snapToSurfaceUI'
@@ -323,6 +324,7 @@ def attachToSurfaceUI():
 def attachToSurfaceFromUI(close=True):
     """
     Execute attachToSurface() from UI
+    @param close:
     """
     # Window
     window = 'attachToSurfaceUI'

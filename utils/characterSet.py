@@ -11,9 +11,11 @@ def isCharSet(charSet):
     @type charSet: str
     """
     # Check Object Exists
-    if not cmds.objExists(charSet): return False
+    if not cmds.objExists(charSet):
+        return False
     # Check Object Type
-    if not cmds.objectType(charSet) == 'character': return False
+    if not cmds.objectType(charSet) == 'character':
+        return False
     # Return Result
     return True
 

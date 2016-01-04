@@ -8,8 +8,10 @@ def isConstraint(constraint):
     @param constraint: The constraint node to query
     @type constraint: str
     """
-    if not cmds.objExists(constraint): return False
-    if not cmds.ls(constraint, type='constraint'): return False
+    if not cmds.objExists(constraint):
+        return False
+    if not cmds.ls(constraint, type='constraint'):
+        return False
     return True
 
 

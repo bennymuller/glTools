@@ -661,6 +661,7 @@ def ikFkBlend(blendJoints,
 
 def getAllCtrls(all='all'):
     """
+    @param all:
     """
     # Check all exists
     if not cmds.objExists(all):
@@ -847,12 +848,11 @@ def connectCostumeCtrlVis(ctrlList=None,
                           useCategory=True):
     """
     Connect costume control visibility.
+    @param ctrlVisNode:
+    @param ctrlVisAttr:
+    @param useCategory:
     @param ctrlList: List of controls to connect visibility for.
     @type ctrlList: list
-    @param ctrlLodNode: Control LOD toggle node.
-    @type ctrlLodNode: str
-    @param ctrlLodAttr: List of control LOD toggle attributes.
-    @type ctrlLodAttr: list
     """
     # ==========
     # - Checks -
@@ -1364,6 +1364,7 @@ def nonRenderableFaceSet(facelist, buildStandin=False):
 def selectNonRenderableFaces(geo):
     """
     Select non-renderable faces for selected geometry
+    @param geo:
     """
     # ==========
     # - Checks -
@@ -1556,6 +1557,7 @@ def fixNonReferencedInputShape(geo):
 
 def cleanUnusedIntermediateShapes(geo):
     """
+    @param geo:
     """
     # Check Geometry Exists
     if not cmds.objExists(geo):

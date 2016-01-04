@@ -13,6 +13,7 @@ import glTools.rig.utils
 def clean(showProgress=False):
     """
     Clean Rig
+    @param showProgress:
     """
     print('===========================================')
     print('=============== RIG CLEANUP ===============')
@@ -168,6 +169,8 @@ def cleanDeformers(eightThreshold=0.001, showProgress=False):
     """
     Cleaning all deformers
     Prune small weights and membership
+    @param eightThreshold:
+    @param showProgress:
     """
     print('# Clean Rig: Cleaning Deformers (prune weights and membership)')
 
@@ -204,6 +207,7 @@ def cleanDeformers(eightThreshold=0.001, showProgress=False):
 
 def cleanSkinClusters(showProgress=False):
     """
+    @param showProgress:
     """
     # Start Timer
     timer = cmds.timerX()

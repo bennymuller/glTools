@@ -101,6 +101,7 @@ def loadDirectoryPath(textField, caption='Load Directory', startDir=None):
 def importFolderBrowser(textField):  # ,caption='Import',startingDirectory=None):
     """
     Set the input directory from file browser selection
+    @param textField:
     """
     mel.eval(
         'global proc importGetFolder(string $textField,string $path,string $type){ textFieldButtonGrp -e -text $path $textField; deleteUI projectViewerWindow; }')
@@ -112,6 +113,7 @@ def importFolderBrowser(textField):  # ,caption='Import',startingDirectory=None)
 def exportFolderBrowser(textField):
     """
     Set the output directory from file browser selection
+    @param textField:
     """
     mel.eval(
         'global proc exportGetFolder(string $textField,string $path,string $type){ textFieldButtonGrp -e -text $path $textField; /*deleteUI projectViewerWindow;*/ }')
@@ -161,6 +163,7 @@ def loadObjectSel(textField, prefixTextField=''):
 def loadTypeSel(textField, prefixTextField='', selType=''):
     """
     Load selected joint into UI text field
+    @param selType:
     @param textField: TextField UI object to load joint selection into
     @type textField: str
     @param prefixTextField: TextField UI object to load curve name prefix into
@@ -327,6 +330,7 @@ def copyTSLselToTSL(sourceTSL, targetTSL, removeFromSource=False, replaceTargetC
 def addToTSL(TSL, itemList=[]):
     """
     Add selected items to the specified textScrollList
+    @param itemList:
     @param TSL: TextScrollList UI object to load object selection into
     @type TSL: str
     """
@@ -524,6 +528,10 @@ def moveDownTSLPosition(TSL):
 
 def loadFileSelection(TSL, fileFilter='*.*', startDir=None, caption='Load Files'):
     """
+    @param TSL:
+    @param fileFilter:
+    @param startDir:
+    @param caption:
     """
     # Select Files
     fileList = cmds.fileDialog2(fileFilter=fileFilter,
@@ -600,10 +608,9 @@ def checkBoxToggleLayout(CBG, layout, invert=False):
 def checkBoxToggleControl(CBG, control, invert=False):
     """
     Toggle the enabled state of a UI layout based on a checkBoxGrp
+    @param control:
     @param CBG: CheckBoxGrp used to toggle layout
     @type CBG: str
-    @param layout: Layout to toggle
-    @type layout: str
     @param invert: Invert the checkBox value
     @type invert: bool
     """
@@ -692,6 +699,7 @@ def setPointValue(FFG, point=''):
 def displayListWindow(itemList, title, enableSelect=False):
     """
     Create a basic list selection window.
+    @param enableSelect:
     @param itemList: Item list to display in window
     @type itemList: list
     @param title: Window title string
