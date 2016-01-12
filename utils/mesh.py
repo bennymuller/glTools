@@ -30,7 +30,8 @@ def isMesh(mesh):
         mesh = meshShape[0]
 
     # Check Mesh
-    if cmds.objectType(mesh) != 'mesh': return False
+    if cmds.objectType(mesh) != 'mesh':
+        return False
 
     # Return Result
     return True
@@ -55,7 +56,8 @@ def isOpen(mesh):
     boundarySel = cmds.ls(sl=1, fl=1)
 
     # Restore User Selection
-    if sel: cmds.select(sel)
+    if sel:
+        cmds.select(sel)
 
     # Return Result
     return bool(boundarySel)
@@ -64,6 +66,7 @@ def isOpen(mesh):
 def getMeshFn(mesh):
     """
     Create an MFnMesh class object from the specified polygon mesh
+    @rtype: object
     @param mesh: Mesh to create function class for
     @type mesh: str
     """
@@ -86,11 +89,13 @@ def getMeshFn(mesh):
 def getMeshVertexIter(mesh, vtxId=None):
     """
     Create an MItMeshVertex class object from the specified polygon mesh
+    @param vtxId:
     @param mesh: Mesh to create function class for
     @type mesh: str
     """
     # Checks
-    if not isMesh(mesh): raise Exception('Object ' + mesh + ' is not a polygon mesh!')
+    if not isMesh(mesh):
+        raise Exception('Object ' + mesh + ' is not a polygon mesh!')
 
     # Get shape
     if cmds.objectType(mesh) == 'transform':
@@ -119,7 +124,8 @@ def getMeshFaceIter(mesh, faceId=None):
     @type faceId: int or None
     """
     # Checks
-    if not isMesh(mesh): raise Exception('Object ' + mesh + ' is not a polygon mesh!')
+    if not isMesh(mesh):
+        raise Exception('Object ' + mesh + ' is not a polygon mesh!')
 
     # Get shape
     if cmds.objectType(mesh) == 'transform':
@@ -185,12 +191,12 @@ def getRawPoints(mesh):
     meshVtx = meshFn.numVertices()
 
     # Convert Mesh Points (MPointArray)
-    # meshPtUtil = OpenMaya.MScriptUtil()
-    # meshPtArray = OpenMaya.MPointArray(meshVtx,OpenMaya.MPoint.origin)
-    # for i in range(meshVtx):
-    #	meshPtArray[i] = OpenMaya.MPoint(	meshPtUtil.getFloatArrayItem(meshPts,(i*3)+0),
-    #										meshPtUtil.getFloatArrayItem(meshPts,(i*3)+1),
-    #										meshPtUtil.getFloatArrayItem(meshPts,(i*3)+2)	)
+    meshPtUtil = OpenMaya.MScriptUtil()
+    meshPtArray = OpenMaya.MPointArray(meshVtx, OpenMaya.MPoint.origin)
+    for i in range(meshVtx):
+        meshPtArray[i] = OpenMaya.MPoint(meshPtUtil.getFloatArrayItem(meshPts,(i*3)+0),
+                                         meshPtUtil.getFloatArrayItem(meshPts,(i*3)+1),
+                                         meshPtUtil.getFloatArrayItem(meshPts,(i*3)+2)	)
 
     # Return Result
     return meshPts
@@ -498,7 +504,8 @@ def numUvShells(mesh, uvSet=''):
     uvSets = cmds.polyUVSet(mesh, q=True, allUVSets=True)
     if not uvSets:
         raise Exception('Mesh object "' + mesh + '" has no UVsets!')
-    if not uvSet: uvSet = uvSets[0]
+    if not uvSet:
+        uvSet = uvSets[0]
     if not uvSets.count(uvSet):
         raise Exception('Mesh object "' + mesh + '" has no UVset "' + uvSet + '"!')
 
@@ -606,7 +613,8 @@ def closestNormal(mesh, point=(0, 0, 0)):
     @type point: tuple
     """
     # Check mesh
-    if not isMesh(mesh): raise Exception('Object ' + mesh + ' is not a polygon mesh!')
+    if not isMesh(mesh):
+        raise Exception('Object ' + mesh + ' is not a polygon mesh!')
 
     # Get MPoint
     pos = glTools.utils.base.getMPoint(point)
@@ -631,7 +639,8 @@ def closestFace(mesh, point=(0, 0, 0)):
     @type point: tuple
     """
     # Check mesh
-    if not isMesh(mesh): raise Exception('Object ' + mesh + ' is not a polygon mesh!')
+    if not isMesh(mesh):
+        raise Exception('Object ' + mesh + ' is not a polygon mesh!')
 
     # Get MPoint
     pos = glTools.utils.base.getMPoint(point)
@@ -793,7 +802,8 @@ def closestNormal(mesh, point=(0, 0, 0)):
     @type point: tuple
     """
     # Check mesh
-    if not isMesh(mesh): raise Exception('Object ' + mesh + ' is not a polygon mesh!')
+    if not isMesh(mesh):
+        raise Exception('Object ' + mesh + ' is not a polygon mesh!')
 
     # Get closest face
     cFace = closestFace(mesh, point)
@@ -822,18 +832,21 @@ def closestNormal(mesh, point=(0, 0, 0)):
 def closestUV(mesh, point=(0, 0, 0), uvSet=''):
     """
     Get the UV of the closest point on a mesh to a specified point
+    @param uvSet:
     @param mesh: Mesh to query
     @type mesh: str
     @param point: Find the closest point to THIS point
     @type point: tuple
     """
     # Check mesh
-    if not isMesh(mesh): raise Exception('Object "' + mesh + '" is not a valid mesh!')
+    if not isMesh(mesh):
+        raise Exception('Object "' + mesh + '" is not a valid mesh!')
 
     # Check uvSet
     if not uvSet:
         currentUvSet = cmds.polyUVSet(mesh, q=True, cuv=True)
-        if not currentUvSet: raise Exception('Mesh "' + mesh + '" has no valid uvSet!')
+        if not currentUvSet:
+            raise Exception('Mesh "' + mesh + '" has no valid uvSet!')
         uvSet = currentUvSet[0]
     if not cmds.polyUVSet(mesh, q=True, auv=True).count(uvSet):
         raise Exception('Invalid UV set "' + uvSet + '" specified!"')
@@ -866,11 +879,13 @@ def getPointFromUV(mesh, uv=(-1, -1), uvSet=None, tolerance=0.01):
     """
 
     # Check mesh
-    if not isMesh(mesh): raise Exception('Object "' + mesh + '" is not a valid mesh!')
+    if not isMesh(mesh):
+        raise Exception('Object "' + mesh + '" is not a valid mesh!')
 
     if not uvSet:
         currentUvSet = cmds.polyUVSet(mesh, q=True, cuv=True)
-        if not currentUvSet: raise Exception('Mesh "' + mesh + '" has no valid uvSet!')
+        if not currentUvSet:
+            raise Exception('Mesh "' + mesh + '" has no valid uvSet!')
         uvSet = currentUvSet[0]
     if not cmds.polyUVSet(mesh, q=True, auv=True).count(uvSet):
         raise Exception('Invalid UV set "' + uvSet + '" specified!"')
@@ -1000,7 +1015,8 @@ def snapToMesh(mesh, transform, snapPivot=False):
     @type snapPivot: bool
     """
     # Check mesh
-    if not isMesh(mesh): raise Exception('Object ' + mesh + ' is not a valid mesh!')
+    if not isMesh(mesh):
+        raise Exception('Object ' + mesh + ' is not a valid mesh!')
 
     # Get transform position
     pos = cmds.xform(transform, q=True, ws=True, rp=True)
@@ -1032,7 +1048,8 @@ def orientToMesh(mesh, transform, upVector=(0, 1, 0), upVectorObject='', normalA
     @type upAxis: str
     """
     # Check mesh
-    if not isMesh(mesh): raise Exception('Object ' + mesh + ' is not a valid mesh!')
+    if not isMesh(mesh):
+        raise Exception('Object ' + mesh + ' is not a valid mesh!')
     # Get transform position
     pos = cmds.xform(transform, q=True, ws=True, rp=True)
     # Get closest point on mesh
@@ -1110,7 +1127,8 @@ def snapPtsToMesh_old(mesh, pointList, amount=1.0):
 
     # Check points
     pointList = cmds.ls(pointList, fl=True)
-    if not pointList: pointList = cmds.ls(sl=True, fl=True)
+    if not pointList:
+        pointList = cmds.ls(sl=True, fl=True)
 
     # Transform types
     transform = ['transform', 'joint', 'ikHandle', 'effector']
@@ -1139,11 +1157,13 @@ def snapPtsToMesh(mesh, pointList, amount=1.0):
     @type amount: float
     """
     # Check mesh
-    if not isMesh(mesh): raise Exception('Object ' + mesh + ' is not a valid mesh!')
+    if not isMesh(mesh):
+        raise Exception('Object ' + mesh + ' is not a valid mesh!')
 
     # Check points
     pointList = cmds.ls(pointList, fl=True)
-    if not pointList: pointList = cmds.ls(sl=True, fl=True)
+    if not pointList:
+        pointList = cmds.ls(sl=True, fl=True)
 
     # Get MFnMesh
     meshFn = getMeshFn(mesh)
@@ -1192,6 +1212,7 @@ def closestVertexAttr(obj, mesh, attr='vtx'):
 def intersect(mesh, source, direction, testBothDirections=False, maxDist=9999):
     """
     Return the intersection point on a specified mesh given a source point and direction
+    @param maxDist:
     @param mesh: Polygon mesh to perform intersection on
     @type mesh: str
     @param source: Source point for the intersection ray
@@ -1316,6 +1337,7 @@ def furthestInersection(mesh, source, direction, testBothDirections=False, maxDi
 def intersectDist(mesh, source, direction, testBothDirections=False, maxDist=9999):
     """
     Return the distance to the closest intersection point on a specified mesh given a source point and direction
+    @param maxDist:
     @param mesh: Polygon mesh to perform intersection on
     @type mesh: str
     @param source: Source point for the intersection ray
@@ -1349,6 +1371,7 @@ def intersectDist(mesh, source, direction, testBothDirections=False, maxDist=999
 def intersectFace(mesh, source, direction, testBothDirections=False, maxDist=9999):
     """
     Return the intersected face ID on a specified mesh given a source point and direction
+    @param maxDist:
     @param mesh: Polygon mesh to perform intersection on
     @type mesh: str
     @param source: Source point for the intersection ray
@@ -1382,6 +1405,7 @@ def intersectFace(mesh, source, direction, testBothDirections=False, maxDist=999
 def intersectAllFaces(mesh, source, direction, testBothDirections=False, maxDist=9999):
     """
     Return all intersected faces on a specified mesh given a source point and direction
+    @param maxDist:
     @param mesh: Polygon mesh to perform intersection on
     @type mesh: str
     @param source: Source point for the intersection ray
@@ -1454,7 +1478,8 @@ def locatorMesh(mesh, locatorScale=0.1, prefix=''):
         raise Exception('Object "' + mesh + '" is not a valid mesh!!')
 
     # Check Prefix
-    if not prefix: prefix = mesh
+    if not prefix:
+        prefix = mesh
 
     # =======================
     # - Build Mesh Locators -
@@ -1496,6 +1521,7 @@ def locatorMesh(mesh, locatorScale=0.1, prefix=''):
 def buildMeshFromPoints(pts, ptsInU=None, ptsInV=None, closedInU=False, attach=False, prefix=None):
     """
     Build a new mesh from a list of points.
+    @param closedInU:
     @param pts: List of points to mesh from.
     @type pts: list
     @param ptsInU: Number os mesh vertices in U direction.
@@ -1514,15 +1540,18 @@ def buildMeshFromPoints(pts, ptsInU=None, ptsInV=None, closedInU=False, attach=F
     # ==========
 
     # Check Prefix
-    if not prefix: prefix = 'point'
+    if not prefix:
+        prefix = 'point'
 
     # Check Point Count
     if not ptsInU:
         ptsInU = math.sqrt(len(pts))
-        if ptsInU % 1: raise Exception('Invalid point count! Points in U not specified!')
+        if ptsInU % 1:
+            raise Exception('Invalid point count! Points in U not specified!')
     if not ptsInV:
         ptsInV = math.sqrt(len(pts))
-        if ptsInV % 1: raise Exception('Invalid point count! Points in V not specified!')
+        if ptsInV % 1:
+            raise Exception('Invalid point count! Points in V not specified!')
     if len(pts) != (ptsInU * ptsInV):
         raise Exception('Invalid point count! Does not match ptsInU*ptsInV!')
 
@@ -1597,7 +1626,8 @@ def borderEdgeList(mesh):
 
         # Iterate
         meshIt.next()
-        if meshIt.isDone(): break
+        if meshIt.isDone():
+            break
 
     # Return result
     return sel
@@ -1618,7 +1648,7 @@ def getCornerVertexIds(mesh):
 
     # Iterate over vertices
     meshIt.reset()
-    cornerVetexList = []
+    cornerVertexList = []
     while not meshIt.isDone():
 
         # Get vertex Id
@@ -1630,13 +1660,14 @@ def getCornerVertexIds(mesh):
         connEdge = list(connEdgeList)
 
         # Check number of connected edges
-        if len(connEdge) == 2: cornerVetexList.append(vId)
+        if len(connEdge) == 2:
+            cornerVertexList.append(vId)
 
         # Iterate to next vertex
         meshIt.next()
 
     # Return result
-    return cornerVetexList
+    return cornerVertexList
 
 
 def vertexConnectivityList(mesh, faceConnectivity=False, showProgress=False):
@@ -1742,7 +1773,8 @@ def vertexConnectivityDict(mesh, vtxIDs, faceConnectivity=False, showProgress=Fa
             cmds.progressBar(gMainProgressBar, e=True, step=1)
 
     # End Current Progress Bar
-    if showProgress: cmds.progressBar(gMainProgressBar, e=True, endProgress=True)
+    if showProgress:
+        cmds.progressBar(gMainProgressBar, e=True, endProgress=True)
 
     # Return Result
     return vtxConnectDict
@@ -1805,7 +1837,8 @@ def faceVertexList(mesh, showProgress=False):
             cmds.progressBar(gMainProgressBar, e=True, step=1)
 
     # End Current Progress Bar
-    if showProgress: cmds.progressBar(gMainProgressBar, e=True, endProgress=True)
+    if showProgress:
+        cmds.progressBar(gMainProgressBar, e=True, endProgress=True)
 
     # =================
     # - Return Result -
@@ -1817,6 +1850,7 @@ def faceVertexList(mesh, showProgress=False):
 def faceVertexDict(mesh, faceIDs, showProgress=False):
     """
     Return a dictionary of mesh face vertex IDs for the specified mesh and face IDs
+    @param faceIDs:
     @param mesh: Polygon mesh to return face vertex list for
     @type mesh: str
     @param showProgress: Show operation progress using the main progress bar
@@ -1863,7 +1897,8 @@ def faceVertexDict(mesh, faceIDs, showProgress=False):
             cmds.progressBar(gMainProgressBar, e=True, step=1)
 
     # End Current Progress Bar
-    if showProgress: cmds.progressBar(gMainProgressBar, e=True, endProgress=True)
+    if showProgress:
+        cmds.progressBar(gMainProgressBar, e=True, endProgress=True)
 
     # =================
     # - Return Result -
@@ -1875,11 +1910,12 @@ def faceVertexDict(mesh, faceIDs, showProgress=False):
 def uncombine(polyUnite):
     """
     Uncombine a mesh with live polyUnite history
-    @param polyUnite: PolyUnite (combine) to break up to indinvidual mesh components
+    @param polyUnite: PolyUnite (combine) to break up to individual mesh components
     @type polyUnite: str
     """
     # Check polyUnite
-    if not cmds.objExists(polyUnite): raise Exception('PolyUnite "' + polyUnite + '" does not exist!!')
+    if not cmds.objExists(polyUnite):
+        raise Exception('PolyUnite "' + polyUnite + '" does not exist!!')
 
     # Get input meshes
     meshInputs = cmds.listConnections(polyUnite + '.inputPoly', s=True, d=False, sh=True)
@@ -1932,6 +1968,8 @@ def polyCleanup(meshList=[],
                 printCmd=False):
     """
     Perform a check for various "bad" polygon geometry.
+    @param printCmd:
+    @param zeroEdgeLen: Find all edges of zero length
     @param meshList: List of meshes to operate on. If empty, operate on meshes in the current scene.
     @type meshList: list
     @param quads: Find all faces with 4 sides. Faces will be triangulated if fix=True.
@@ -1962,7 +2000,7 @@ def polyCleanup(meshList=[],
     @type mapAreaTol: float
     @param keepHistory: Maintain cleanup history
     @type keepHistory: bool
-    @param fix: Attempt to fix any bad geoemetry found.
+    @param fix: Attempt to fix any bad geometry found.
     @type fix: bool
     """
     # Check mesh list
@@ -2014,7 +2052,8 @@ def polyCleanup(meshList=[],
 
     # Perform Poly Cleanup
     mel.eval(polyCleanupCmd)
-    if printCmd: print polyCleanupCmd
+    if printCmd:
+        print polyCleanupCmd
 
     # Generate return value
     result = cmds.ls(sl=1)

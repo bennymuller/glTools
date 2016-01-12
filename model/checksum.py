@@ -1,6 +1,7 @@
 import maya.cmds as cmds
 import maya.OpenMaya as OpenMaya
 import glTools.utils.mesh
+import glTools.utils.shader
 import hashlib
 import os.path
 
@@ -29,17 +30,60 @@ def checksum_mesh(mesh):
     return hexVal
 
 
+def checksum_meshPointPositions(mesh):
+    """
+    Generate a checksum based n mesh raw point positions
+    @param mesh: Input mesh to generate checksum for
+    """
+    pts = glTools.utils.mesh.getPoints(mesh)
+    print pts
+
+    # Generate Checksum
+    m = hashlib.md5()
+    m.update(str(pts))
+    hexVal = m.hexdigest()
+
+    # Return Checksum Hash
+    return hexVal
+
+
 def checksum_meshUV(mesh):
     """
-    @param mesh:Polygon mesh to return uv checksum for
+    Generate a checksum string basd upon uv positions of the specified mesh
+    @param mesh:Polygon mesh to return uv checksum
     @type mesh: str
     """
     # Check Mesh
     if not glTools.utils.mesh.isMesh(mesh):
         raise Exception('Object ' + mesh + ' is not a valid polygon mesh!')
 
-    # Return Result
-    return
+    # Get U and V positions as lists
+    uvArrays=glTools.utils.mesh.getUVs(mesh)
+
+
+    # Generate Checksum
+    m = hashlib.md5()
+    m.update(str(list(uvArrays[0]+uvArrays[1])))
+    hexVal = m.hexdigest()
+
+    # Return Checksum Hash
+    return hexVal
+
+def checksum_shadingGrpup(mesh):
+    """
+    Create a checksum dictionary from SG of specified mesh
+    @param mesh: mesh to get SG hash form
+    """
+    sg=glTools.utils.shader.getSG(mesh)
+    print sg
+
+    # Generate Checksum
+    m = hashlib.md5()
+    m.update(sg[0])
+    hexVal = m.hexdigest()
+
+    # Return Checksum Hash
+    return hexVal
 
 
 def checksum_meshDict(meshList):
@@ -105,3 +149,10 @@ def checksum_meshDict_compare(fileList):
     @type fileList: list
     """
     pass
+
+mesh= cmds.ls(sl = True)
+sum1 = checksum_meshPointPositions(mesh[0])
+print sum1
+
+checksum_shadingGrpup(mesh[0])
+

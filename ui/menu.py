@@ -1,7 +1,6 @@
 import maya.cmds as cmds
 import maya.mel as mel
 
-
 def create():
     """
     This generates the menu for all rigTools.

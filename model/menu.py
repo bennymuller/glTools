@@ -118,3 +118,5 @@ def create():
         cmds.menuItem(label='Refresh Menu',
                     command='import glTools.model.menu;reload(glTools.model.menu);glTools.model.menu.create()')
         cmds.setParent('..')
+
+        print 'MODEL MENU GENERATED'
