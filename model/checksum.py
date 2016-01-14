@@ -119,6 +119,7 @@ def checksum_meshDict(meshList):
     return checksum_dict
 
 
+
 def checksum_meshDict_fromFile(filePath):
     """
     Create a checksum dictionary from the specified maya file.
