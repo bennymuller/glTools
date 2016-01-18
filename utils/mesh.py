@@ -201,6 +201,27 @@ def getRawPoints(mesh):
     # Return Result
     return meshPts
 
+def getPointsWorldspace(mesh):
+    """
+    Get vertex positions as a list in worldspace
+    @param mesh: Mesh to get vertex positions for
+    @type mesh: str
+    """
+    # Create empty point array.
+    inMeshMPointArray = OpenMaya.MPointArray()
+
+    # Create function set and get points in world space.
+    meshFn = getMeshFn(mesh)
+    meshFn.getPoints(inMeshMPointArray, OpenMaya.MSpace.kWorld)
+
+    # Add each point to list.
+    pointList = []
+
+    for i in range(inMeshMPointArray.length()):
+        pointList.append([inMeshMPointArray[i][0], inMeshMPointArray[i][1], inMeshMPointArray[i][2]])
+
+    # Return Result
+    return pointList
 
 def getPoints(mesh):
     """
