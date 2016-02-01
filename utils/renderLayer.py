@@ -4,7 +4,9 @@ import maya.OpenMaya as OpenMaya
 def outputRenderLayers():
     # Iterate through all render layers.
     iterator = OpenMaya.MItDependencyNodes(OpenMaya.MFn.kRenderLayer)
-    print iterator.item()
+    #print iterator.item()
+
+    d = {}
 
     # Loop though iterator objects
     while not iterator.isDone():
@@ -13,15 +15,13 @@ def outputRenderLayers():
         fn = OpenMaya.MFnDependencyNode(iterator.item())
 
         # Ignore the default render layers
-        if( fn.name() == "defaultRenderLayer" ):
+        if fn.name() == "defaultRenderLayer":
             iterator.next()
             continue
 
-        elif(fn.name() == "globalRender"):
+        elif fn.name() == "globalRender":
             iterator.next()
             continue
-
-        print 'render layer name:', fn.name()
 
         # Get connections to attributes on the layer node.
         # The LayerConnections will be a set of attributes on the LayerNode that are connected to something else.
@@ -39,12 +39,20 @@ def outputRenderLayers():
 
             for j in range(ConnectedNodes.length()):
                 fnItem = OpenMaya.MFnDependencyNode(ConnectedNodes[j].node())
-                connectedList.append(fnItem.name())
+                name = fnItem.name()
+                # Ignore defaults.
+                if name == 'defaultRenderingList1':
+                    pass
+                else:
+                    connectedList.append(fnItem.name())
 
-        print connectedList
+        d.update({fn.name(): connectedList})
 
         # Iterate next.
         iterator.next()
 
+    return d
 
-outputRenderLayers()
+
+# dic = outputRenderLayers()
+# print dic
