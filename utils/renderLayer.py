@@ -4,12 +4,12 @@ import maya.OpenMaya as OpenMaya
 def outputRenderLayers():
     # Iterate through all render layers.
     iterator = OpenMaya.MItDependencyNodes(OpenMaya.MFn.kRenderLayer)
-    print iterator
+    print iterator.item()
 
     # Loop though iterator objects
     while not iterator.isDone():
 
-        # Attach a function set to the layer
+        # Attach a function set to the layer.
         fn = OpenMaya.MFnDependencyNode(iterator.item())
 
         # Ignore the default render layers
@@ -23,23 +23,22 @@ def outputRenderLayers():
 
         print 'render layer name:', fn.name()
 
-        # get connections to attributes on the layer node.
-        # The LayerConnections will be a set of attributes
-        # on the LayerNode that are connected to something else.
+        # Get connections to attributes on the layer node.
+        # The LayerConnections will be a set of attributes on the LayerNode that are connected to something else.
         LayerConnections = OpenMaya.MPlugArray()
         fn.getConnections(LayerConnections)
 
         connectedList = []
 
-        for c in LayerConnections:
+        # Loop through all of the connections to the layer.
+        for i in range(LayerConnections.length()):
+
+            # Get the attribute plug on the other node so we can find out what it's connected to.
             ConnectedNodes = OpenMaya.MPlugArray()
-            c.connectedTo(ConnectedNodes, False, True)
+            LayerConnections[i].connectedTo(ConnectedNodes, False, True)
 
-            print ConnectedNodes.length()
-
-            for n in ConnectedNodes:
-                fnItem = OpenMaya.MFnDependencyNode(n.node())
-                print 'render layer member', fnItem.name()
+            for j in range(ConnectedNodes.length()):
+                fnItem = OpenMaya.MFnDependencyNode(ConnectedNodes[j].node())
                 connectedList.append(fnItem.name())
 
         print connectedList
